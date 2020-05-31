@@ -10,7 +10,6 @@ module.exports = class NekoCommand extends Command {
             aliases: ['catgirl', 'nekomimi', 'nekos'],
             group: 'nsfw',
             memberName: 'neko',
-            guildOnly: true,
             description: 'Nekos!',
             details: 'This command is NSFW in NSFW channels and not NSFW in normal channels!',
             examples: ['~neko'],
