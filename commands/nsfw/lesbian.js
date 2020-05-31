@@ -10,7 +10,6 @@ module.exports = class lesbianCommand extends Command {
             name: 'lesbian',
             group: 'nsfw',
             memberName: 'lesbian',
-            guildOnly: true,
             description: 'Finds high quality NSFW content for you!',
             details: 'This command can only be used in NSFW channels!',
             examples: ['~lesbian'],
