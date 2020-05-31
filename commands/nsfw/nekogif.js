@@ -10,7 +10,6 @@ module.exports = class NekoGifCommand extends Command {
             aliases: ['ngif'],
             group: 'nsfw',
             memberName: 'nekogif',
-            guildOnly: true,
             description: 'Finds neko gifs for you!',
             details: 'This command can only be used in NSFW channels!',
             examples: ['~nekogif'],
