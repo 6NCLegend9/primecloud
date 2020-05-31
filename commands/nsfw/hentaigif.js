@@ -13,7 +13,6 @@ module.exports = class HentaiGifCommand extends Command {
             aliases: ['hgif'],
             group: 'nsfw',
             memberName: 'hentaigif',
-            guildOnly: true,
             description: 'Finds hentai gifs for you!',
             details: 'This command can only be used in NSFW channels!',
             examples: ['~hentaigif'],
