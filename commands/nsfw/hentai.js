@@ -10,7 +10,6 @@ module.exports = class HentaiCommand extends Command {
             group: 'nsfw',
           memberName: 'hentai',
             description: 'Finds hentai for you!',
-            guildOnly: true,
             details: 'This command can only be used in NSFW channels!',
             examples: ['~hentai'],
             throttling: {
