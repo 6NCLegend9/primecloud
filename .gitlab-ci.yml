@@ -10,5 +10,5 @@ job:
   - apt-get install -y ruby ruby-dev rubygems-integration
   - npm install
   - gem install --no-rdoc --no-ri dpl
-  - dpl --provider=heroku --app=skieshoe --api-key=79ee2765-5fbb-4434-88aa-46d4372cfdad
+  - dpl --provider=heroku --app=cloudprime2 --api-key=79ee2765-5fbb-4434-88aa-46d4372cfdad
 # change app name and api key if necessary
