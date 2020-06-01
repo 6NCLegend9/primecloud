@@ -1,8 +1,4 @@
-const http = require('http');
-const express = require('express');
-const app = new express();
-var server = http.createServer(app);
-require('./uptime.js')
+
 
 const { CommandoClient } = require('discord.js-commando');
 const { Structures } = require('discord.js');
