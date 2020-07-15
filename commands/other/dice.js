@@ -41,7 +41,7 @@ module.exports = class diceCommand extends Command {
 
 
 		diceEmbed
-			.setColor('#ff3232')
+			.setColor('#BA55D3')
 			.addField('Dice result', res, false)
 			.addField('Total', throwDice.total, false);
 
