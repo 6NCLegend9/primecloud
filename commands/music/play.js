@@ -1,5 +1,6 @@
 const { Command } = require('discord.js-commando');
 const { MessageEmbed } = require('discord.js');
+const { formatNumber, embedURL } = require('../../util/Util');
 const Youtube = require('simple-youtube-api');
 const ytdl = require('ytdl-core');
 const { youtubeAPI } = require('../../config.json');
@@ -57,14 +58,14 @@ module.exports = class PlayCommand extends Command {
       for (let i = 0; i < videosObj.length; i++) {
         const video = await videosObj[i].fetch();
         // this can be uncommented if you choose to limit the queue
-         if (message.guild.musicData.queue.length < 500) {
+         if (message.guild.musicData.queue.length < 250) {
         //
         message.guild.musicData.queue.push(
           PlayCommand.constructSongObj(video, voiceChannel)
         );
          } else {
            return message.say(
-             `I can't play the full playlist because there will be more than 500 songs in queue`
+             `I can't play the full playlist because there will be more than 250 songs in queue`
            );
          }
       }
@@ -73,7 +74,7 @@ module.exports = class PlayCommand extends Command {
         return PlayCommand.playSong(message.guild.musicData.queue, message);
       } else if (message.guild.musicData.isPlaying == true) {
         return message.say(
-          `Playlist - <:CloudMusic:711677713374642287> ${playlist.title} <:CloudMusic:711677713374642287> has been added to queue`
+          `Playlist - <:CloudMusicRadio:721477887760531497> ${playlist.title} <:CloudMusicRadio:721477887760531497>  has been added to queue`
         );
       }
     }
@@ -98,7 +99,7 @@ module.exports = class PlayCommand extends Command {
       //   return message.say('I cannot play videos longer than 1 hour');
       // }
       // // can be uncommented if you want to limit the queue
-      if (message.guild.musicData.queue.length > 500) {
+      if (message.guild.musicData.queue.length > 250) {
         return message.say(
           'There are too many songs in the queue already, skip or wait a bit'
         );
@@ -128,19 +129,19 @@ module.exports = class PlayCommand extends Command {
         `I had some trouble finding what you were looking for, please try again or be more specific`
       );
     }
-    const vidNameArr = [];
+   const vidNameArr = [];
     for (let i = 0; i < videos.length; i++) {
       vidNameArr.push(`${i + 1}: ${videos[i].title}`);
     }
     vidNameArr.push('exit');
     const embed = new MessageEmbed()
-      .setColor('#ff3232')
-      .setTitle('<:CloudMusic:711677713374642287> Choose a song by commenting a number between 1 and 5')
-      .addField('<:CloudMusic:711677713374642287> Song 1', vidNameArr[0])
-      .addField('<:CloudMusic:711677713374642287> Song 2', vidNameArr[1])
-      .addField('<:CloudMusic:711677713374642287> Song 3', vidNameArr[2])
-      .addField('<:CloudMusic:711677713374642287> Song 4', vidNameArr[3])
-      .addField('<:CloudMusic:711677713374642287> Song 5', vidNameArr[4])
+      .setColor('#BA55D3')
+      .setTitle('<:CloudMusicRadio:721477887760531497> Choose a song by commenting a number between 1 and 5')
+      .addField('<:CloudMusicRadio:721477887760531497>  Song 1', vidNameArr[0])
+      .addField('<:CloudMusicRadio:721477887760531497>  Song 2', vidNameArr[1])
+      .addField('<:CloudMusicRadio:721477887760531497>  Song 3', vidNameArr[2])
+      .addField('<:CloudMusicRadio:721477887760531497>  Song 4', vidNameArr[3])
+      .addField('<:CloudMusicRadio:721477887760531497>  Song 5', vidNameArr[4])
       .addField('Exit', 'exit');
     var songEmbed = await message.channel.send({ embed });
     message.channel
@@ -173,7 +174,7 @@ module.exports = class PlayCommand extends Command {
             // }
 
             ///can be uncommented if you don't want to limit the queue
-            if (message.guild.musicData.queue.length >500) {
+            if (message.guild.musicData.queue.length >250) {
                songEmbed.delete();
              return message.say(
                'There are too many songs in the queue already, skip or wait a bit'
@@ -228,17 +229,22 @@ module.exports = class PlayCommand extends Command {
           .on('start', function() {
             message.guild.musicData.songDispatcher = dispatcher;
             dispatcher.setVolume(message.guild.musicData.volume);
+             var username = message.author.username;
+var discrim = message.author.discriminator;
             const videoEmbed = new MessageEmbed()
-              .setThumbnail(queue[0].thumbnail)
-              .setColor('#ff3232') 
-            .setTitle(queue[0].title)
-            .setURL(queue[0].url)
-            .addField('Now Playing:', queue[0].title)
-              .addField('Duration:', queue[0].duration);
-            if (queue[1]) videoEmbed.addField('Next Song:', queue[1].title);
+            .setThumbnail(queue[0].thumbnail)
+              .setColor('#BA55D3') 
+            
+           // .setURL(queue[0].url)
+            .addField('<a:musicrillrunning:715186304819789844>Now Playing:', embedURL(queue[0].title, queue[0].url), true)
+            .addField('<a:musicrillrunning:715186304819789844>Duration:', queue[0].duration)
+            .addField('Reputed By', message.author.username+ '#' +message.author.discriminator);
+            if (queue[1]) videoEmbed.addField('<:YTMusic:715186433706426448>Up Coming:', embedURL(queue[1].title, queue[1].url), true);
+               if (queue[1]) videoEmbed.addField('<:YTMusic:715186433706426448>Duration:', queue[1].duration);
             message.say(videoEmbed);
             message.guild.musicData.nowPlaying = queue[0];
             return queue.shift();
+           message.delete(Embed);
           }) 
           .on('finish', function() {
             if (queue.length >= 1) {
@@ -277,6 +283,7 @@ module.exports = class PlayCommand extends Command {
       voiceChannel
     };
   }
+
   // prettier-ignore
   static formatDuration(durationObj) {
     const duration = `${durationObj.hours ? (durationObj.hours + ':') : ''}${
