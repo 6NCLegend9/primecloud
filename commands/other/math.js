@@ -28,7 +28,7 @@ module.exports = class mathCommand extends Command {
 		const mathEmbed = new Discord.MessageEmbed(); // eslint-disable-line one-var
 
 		mathEmbed
-			.setColor('#ff3232')
+			.setColor('#BA55D3')
 			.addField('Equation', args.equation.toString(), false)
 			.addField('Result', scalc(args.equation), false);
 
