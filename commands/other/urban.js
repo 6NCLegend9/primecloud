@@ -34,7 +34,7 @@ module.exports = class urbanCommand extends Command {
 			urbanEmbed
         .setThumbnail('https://i.imgur.com/D19IeLX.png')
         .setAuthor(`Urban Search - ${json.word}`, 'https://i.imgur.com/D19IeLX.png')
-				.setColor('#ff3232')
+				.setColor('#BA55D3')
 				.addField('Definition', json.definition.length <= 1024 ? json.definition : `Truncated due to exceeding maximum length\n${json.definition.slice(0, 970)}`, false)
 				.addField('Example', json.example.length <= 1024 ? json.example : `Truncated due to exceeding maximum length\n${json.example.slice(0, 970)}`, false)
 				.addField('Permalink', json.permalink, false);
