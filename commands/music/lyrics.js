@@ -41,9 +41,8 @@ module.exports = class LyricsCommand extends Command {
       );
     }
     const sentMessage = await message.channel.send(
-      'Searching...'
+      '👀 Searching for lyrics 👀'
     );
-
     // get song id
     var url = `https://api.genius.com/search?q=${encodeURI(songName)}`;
 
@@ -54,32 +53,37 @@ module.exports = class LyricsCommand extends Command {
       var body = await fetch(url, { headers });
       var result = await body.json();
       const songID = result.response.hits[0].result.id;
-
       // get lyrics
       url = `https://api.genius.com/songs/${songID}`;
       body = await fetch(url, { headers });
       result = await body.json();
 
       const song = result.response.song;
-  
+
       let lyrics = await getLyrics(song.url);
       lyrics = lyrics.replace(/(\[.+\])/g, '');
-
+      if (!lyrics) {
+        return message.say(
+          'No lyrics have been found for your query, please try again and be more specific.'
+        );
+      }
       if (lyrics.length > 4095)
-        return message.say('Lyrics are too long to be returned as an embed');
-      if (lyrics.length <  2048) {
+        return message.say(
+          'Lyrics are too long to be returned in a message embed'
+        );
+      if (lyrics.length < 2048) {
         const lyricsEmbed = new MessageEmbed()
-          .setColor('#ff3232')
+          .setColor('#BA55D3')
           .setDescription(lyrics.trim());
         return sentMessage.edit('', lyricsEmbed);
       } else {
-        // lyrics.length > 2048
+        // 2048 < lyrics.length < 4096
         const firstLyricsEmbed = new MessageEmbed()
-          .setColor('#ff3232')
-          .setDescription(lyrics.slice(0,  2048));
+          .setColor('#BA55D3')
+          .setDescription(lyrics.slice(0, 2048));
         const secondLyricsEmbed = new MessageEmbed()
-          .setColor('#00CED1')
-          .setDescription(lyrics.slice( 2048, lyrics.length));
+          .setColor('#BA55D3')
+          .setDescription(lyrics.slice(2048, lyrics.length));
         sentMessage.edit('', firstLyricsEmbed);
         message.channel.send(secondLyricsEmbed);
         return;
@@ -100,4 +104,3 @@ module.exports = class LyricsCommand extends Command {
     }
   }
 };
-  
