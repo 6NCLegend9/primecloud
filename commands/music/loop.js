@@ -1,4 +1,5 @@
 const { Command } = require('discord.js-commando');
+const { MessageEmbed } = require('discord.js');
 
 module.exports = class LoopCommand extends Command {
   constructor(client) {
@@ -21,6 +22,7 @@ module.exports = class LoopCommand extends Command {
   run(message, { numOfTimesToLoop }) {
     if (!message.guild.musicData.isPlaying) {
       return message.say('There is no song playing right now!');
+
     } else if (
       message.guild.musicData.isPlaying &&
       message.guild.triviaData.isTriviaRunning
@@ -33,11 +35,11 @@ module.exports = class LoopCommand extends Command {
     }
 
     // prettier-ignore
-    message.channel.send(
-      `<:repeat:713742643489800263> ${message.guild.musicData.nowPlaying.title} looped ${numOfTimesToLoop} ${
-        (numOfTimesToLoop == 1) ? 'time' : 'times' 
-      }`
-    );
-    return;
-  }
+    const embed = new MessageEmbed()  
+   .setColor('#BA55D3')
+    	.addField('Disconnected', `<:repeat:713742643489800263> ${message.guild.musicData.nowPlaying.title} looped ${numOfTimesToLoop} ${
+        (numOfTimesToLoop == 1) ? 'time' : 'times'}`)
+    	return message.embed(embed);
+	}
 };
+
