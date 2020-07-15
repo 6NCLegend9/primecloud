@@ -30,7 +30,7 @@ module.exports = class animeCommand extends Command {
 
 			animeEmbed
 				.setAuthor(args.query, 'https://myanimelist.cdn-dena.com/img/sp/icon/apple-touch-icon-256.png')
-				.setColor('#ff3232')
+				.setColor('#BA55D3')
 				.setImage(anime.image)
 				.setURL(`https://myanimelist.net/anime/${anime.id}`);
 
