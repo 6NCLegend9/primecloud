@@ -27,7 +27,7 @@ module.exports = class MotivationCommand extends Command {
     const quoteEmbed = new MessageEmbed()
       .setTitle(randomQuote.author)
       .setDescription(randomQuote.text)
-      .setColor('#ff3232');
+      .setColor('#BA55D3');
     return message.channel.send(quoteEmbed);
   }
 };
