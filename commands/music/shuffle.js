@@ -1,5 +1,5 @@
 
-    const { Command } = require('discord.js-commando');
+const { Command } = require('discord.js-commando');
 const { MessageEmbed } = require('discord.js');
 
 module.exports = class ShuffleQueueCommand extends Command {
@@ -14,7 +14,7 @@ module.exports = class ShuffleQueueCommand extends Command {
   }
   run(message) {
     var voiceChannel = message.member.voice.channel;
-    if (!voiceChannel) return message.reply('Join a channel and try again');
+    if (!voiceChannel) return message.reply('You cannot use the command unless youre in the same channel as Cloud Music!');
 
     if (
       typeof message.guild.musicData.songDispatcher == 'undefined' ||
@@ -32,10 +32,10 @@ module.exports = class ShuffleQueueCommand extends Command {
     message.guild.musicData.queue.slice(0, 10).forEach(obj => {
       titleArray.push(obj.title);
     });
-    var numOfEmbedFields = 10;
-    if (titleArray.length < 10) numOfEmbedFields = titleArray.length;
+    var numOfEmbedFields = 15;
+    if (titleArray.length < 15) numOfEmbedFields = titleArray.length;
     var queueEmbed = new MessageEmbed()
-      .setColor('#ff3232')
+      .setColor('#BA55D3')
       .setTitle('<:shuffle:713742466875916339>New Music Queue');
     for (let i = 0; i < numOfEmbedFields; i++) {
       queueEmbed.addField(`${i + 1}:`, `${titleArray[i]}`);
