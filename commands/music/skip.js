@@ -13,7 +13,7 @@ module.exports = class SkipCommand extends Command {
 
   run(message) {
     const voiceChannel = message.member.voice.channel;
-    if (!voiceChannel) return message.reply('Join a channel and try again');
+    if (!voiceChannel) return message.reply('You cannot use the command unless youre in the same channel as Cloud Music!');
 
     if (
       typeof message.guild.musicData.songDispatcher == 'undefined' ||
