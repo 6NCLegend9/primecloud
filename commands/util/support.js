@@ -18,7 +18,7 @@ module.exports = class DonateCommand extends Command {
 	async run(msg) {
     
 		const embed = new MessageEmbed()
-			.setColor("#ff3232")
+			.setColor("#BA55D3")
 		.setTitle('Support!')		
     .addField('❯ Support server', embedURL('get support here', 'https://discord.gg/sy6Jrze'), true)
 		return msg.embed(embed);
