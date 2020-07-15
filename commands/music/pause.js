@@ -1,4 +1,5 @@
 const { Command } = require('discord.js-commando');
+const { MessageEmbed } = require('discord.js');
 
 module.exports = class PauseCommand extends Command {
   constructor(client) {
@@ -13,7 +14,7 @@ module.exports = class PauseCommand extends Command {
 
   run(message) {
     var voiceChannel = message.member.voice.channel;
-    if (!voiceChannel) return message.reply('Join a channel and try again');
+    if (!voiceChannel) return message.reply('You cannot use the command unless youre in the same channel as Cloud Music!');
 
     if (
       typeof message.guild.musicData.songDispatcher == 'undefined' ||
@@ -22,8 +23,12 @@ module.exports = class PauseCommand extends Command {
       return message.say('There is no song playing right now!');
     }
 
-    message.say('Song paused <:pause:713742415080718337>');
+   // message.say('Song paused <:pause:713742415080718337>');
 
     message.guild.musicData.songDispatcher.pause();
+      const embed = new MessageEmbed()
+      .setColor('#BA55D3')
+    	.addField('Pause', `Song paused <:pause:713742415080718337>`)
+    	return message.embed(embed);
   }
 };
