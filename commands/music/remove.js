@@ -1,4 +1,5 @@
 const { Command } = require('discord.js-commando');
+const { MessageEmbed } = require('discord.js');
 
 module.exports = class RemoveSongCommand extends Command {
   constructor(client) {
@@ -22,7 +23,7 @@ module.exports = class RemoveSongCommand extends Command {
       return message.reply('Please enter a valid song number');
     }
     var voiceChannel = message.member.voice.channel;
-    if (!voiceChannel) return message.reply('Join a channel and try again');
+    if (!voiceChannel) return message.reply('You cannot use the command unless youre in the same channel as Cloud Music!');
 
     if (
       typeof message.guild.musicData.songDispatcher == 'undefined' ||
@@ -32,6 +33,11 @@ module.exports = class RemoveSongCommand extends Command {
     }
 
     message.guild.musicData.queue.splice(songNumber - 1, 1);
-    return message.say(`<:trashcan:713747946608525383> Removed song number ${songNumber} from queue`);
+   // return message.say(`<:trashcan:713747946608525383> Removed song number ${songNumber} from queue`);
+    const embed = new MessageEmbed()
+      .setColor('#BA55D3')
+    	.addField('Removed', `<:trashcan:713747946608525383> Removed song number ${songNumber} from queue`)
+    	return message.embed(embed);
   }
 };
+
