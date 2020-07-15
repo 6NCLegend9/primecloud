@@ -1,4 +1,5 @@
 const { Command } = require('discord.js-commando');
+const { MessageEmbed } = require('discord.js');
 
 module.exports = class VolumeCommand extends Command {
   constructor(client) {
@@ -23,10 +24,9 @@ module.exports = class VolumeCommand extends Command {
       ]
     });
   }
-//MADE BY CTK
   run(message, { wantedVolume }) {
     const voiceChannel = message.member.voice.channel;
-    if (!voiceChannel) return message.reply('Join a channel and try again');
+    if (!voiceChannel) return message.reply('You cannot use the command unless youre in the same channel as Cloud Music!');
 
     if (
       typeof message.guild.musicData.songDispatcher == 'undefined' ||
@@ -37,6 +37,9 @@ module.exports = class VolumeCommand extends Command {
     const volume = wantedVolume / 100;
     message.guild.musicData.volume = volume;
     message.guild.musicData.songDispatcher.setVolume(volume);
-    message.say(`Current volume is: ${wantedVolume}% <:audio:713742239196512358>`);
+     const embed = new MessageEmbed()
+      .setColor('#BA55D3')
+    	.addField('Volume', `Current volume is: ${wantedVolume}% <:audio:713742239196512358>`)
+    	return message.embed(embed);
   }
 };
