@@ -29,7 +29,7 @@ module.exports = class ServerCommand extends Command {
 	async run(msg) {
 		if (!msg.guild.members.cache.has(msg.guild.ownerID)) await msg.guild.members.fetch(msg.guild.ownerID);
 		const embed = new MessageEmbed()
-			.setColor("#ff3232")
+			.setColor("#BA55D3")
 			.setThumbnail(msg.guild.iconURL({ format: 'png' }))
 			.addField('❯ Name', msg.guild.name, true)
 			.addField('❯ ID', msg.guild.id, true)
