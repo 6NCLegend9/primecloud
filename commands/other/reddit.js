@@ -10,7 +10,7 @@ module.exports = class RedditCommand extends Command {
       group: 'other',
       memberName: 'reddit',
       description:
-        'Replies with 10 top daily posts in wanted subreddit, you can specify sorting and time',
+        'Replies with top daily posts in wanted subreddit, you can specify sorting and time',
       throttling: {
         usages: 2,
         duration: 10
@@ -96,7 +96,7 @@ module.exports = class RedditCommand extends Command {
       });
     // returns an embed that is ready to be sent
     function embedPost(data) {
-      let color = '#ff3232';
+      let color = '#BA55D3';
       if (data.title.length > 255) {
         data.title = data.title.substring(0, 252) + '...'; // discord.js does not allow embed title lengths greater than 256
       }
