@@ -23,7 +23,7 @@ module.exports = class InsultCommand extends Command {
       .then(res => res.json())
       .then(json => {
         const embed = new MessageEmbed()
-          .setColor('#ff3232')
+          .setColor('#BA55D3')
           .setTitle('Evil Insult')
           .setDescription(json.insult)
           .setURL('https://evilinsult.com');
