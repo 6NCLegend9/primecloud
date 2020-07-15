@@ -25,9 +25,9 @@ module.exports = class QueueCommand extends Command {
     });
     /* eslint-enable */
     var queueEmbed = new MessageEmbed()
-      .setColor('#ff3232')
+      .setColor('#BA55D3')
       .setTitle('<:queue:713785857986920488>Music Queue')
-    .setFooter('display only first 15 songs and limited to 500 songs')
+    .setFooter('display only first 15 songs and limited to 250 songs')
     for (let i = 0; i < titleArray.length; i++) {
       queueEmbed.addField(`${i + 1}:`, `${titleArray[i]}`);
     }
