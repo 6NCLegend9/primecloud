@@ -1,30 +1,28 @@
 const { Command } = require('discord.js-commando');
 
-module.exports = class SkipAllCommand extends Command {
+module.exports = class SkipCommand extends Command {
   constructor(client) {
     super(client, {
-      name: 'skipall',
-      aliases: ['skip-all'],
-      memberName: 'skipall',
+      name: 'skip',
+      aliases: ['skip-song', 's'],
+      memberName: 'skip',
       group: 'music',
-      description: 'Skip all songs in queue',
+      description: 'Skip the current playing song',
     });
   }
 
   run(message) {
-    var voiceChannel = message.member.voice.channel;
-    if (!voiceChannel) return message.reply('Join a channel and try again');
+    const voiceChannel = message.member.voice.channel;
+    if (!voiceChannel) return message.reply('You cannot use the command unless youre in the same channel as Cloud Music!');
 
     if (
       typeof message.guild.musicData.songDispatcher == 'undefined' ||
       message.guild.musicData.songDispatcher == null
     ) {
       return message.reply('There is no song playing right now!');
+    } else if (message.guild.triviaData.isTriviaRunning) {
+      return message.reply(`You can't skip a trivia! tyep *endtrivia*`);
     }
-    if (!message.guild.musicData.queue)
-      return message.say('There are no songs in queue');
     message.guild.musicData.songDispatcher.end();
-    message.guild.musicData.queue.length = 0; // clear queue
-    return;
   }
-};
+};  
