@@ -21,8 +21,8 @@ module.exports = class FortuneCommand extends Command {
     try {
       const res = await fetch('http://yerkee.com/api/fortune');
       const json = await res.json();
-      const embed = new MessageEmbed()
-        .setColor('#ff3232')
+      const embed = MessageEmbed()
+        .setColor('#BA55D3')
         .setTitle('Fortune Cookie')
         .setDescription(json.fortune);
       return message.say(embed);
