@@ -1,4 +1,5 @@
 const Command = require('../../structures/Command');
+const { MessageEmbed } = require('discord.js');
 
 module.exports = class JoinCommand extends Command {
 	constructor(client) {
@@ -12,17 +13,21 @@ module.exports = class JoinCommand extends Command {
 		});
 	}
 
-	async run(msg) {
-		const voiceChannel = msg.member.voice.channel;
-		if (!voiceChannel) return msg.reply('Please enter a voice channel first.');
+	async run(message) {
+		const voiceChannel = message.member.voice.channel;
+		if (!voiceChannel) return message.reply('Please enter a voice channel first.');
 		if (!voiceChannel.permissionsFor(this.client.user).has(['CONNECT', 'SPEAK', 'VIEW_CHANNEL'])) {
-			return msg.reply('I\'m missing the "Connect", "Speak", or "View Channel" permission for this channel.');
+			return message.reply('I\'m missing the "Connect", "Speak", or "View Channel" permission for this channel.');
 		}
-		if (!voiceChannel.joinable) return msg.reply('Your voice channel is not joinable.');
+		if (!voiceChannel.joinable) return message.reply('Your voice channel is not joinable.');
 		if (this.client.voice.connections.has(voiceChannel.guild.id)) {
-			return msg.reply('I am already in a voice channel.');
+			return message.reply('I am already in a voice channel.');
 		}
 		await voiceChannel.join();
-		return msg.reply(`Joined **${voiceChannel.name}**!`);
+	//	return message.reply(`Joined **${voiceChannel.name}**!`);
+       const embed = new MessageEmbed()  
+   .setColor('#BA55D3')
+    	.addField('Joined', `Joined **${voiceChannel.name}**!`)
+    	return message.embed(embed);
 	}
 };
