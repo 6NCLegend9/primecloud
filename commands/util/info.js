@@ -21,7 +21,7 @@ module.exports = class InfoCommand extends Command {
 
 	async run(msg) {
 		const embed = new MessageEmbed()
-			.setColor('#ff3232')
+			.setColor('#BA55D3')
 			.addField('❯ Servers', formatNumber(this.client.guilds.cache.size), true)
 			.addField('❯ Commands', formatNumber(this.client.registry.commands.size), true)
 			.addField('❯ Shards', formatNumber(this.client.options.shardCount), true)
