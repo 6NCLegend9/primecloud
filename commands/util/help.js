@@ -26,7 +26,7 @@ constructor(client) {
 		if (!command) {
 			const embed = new MessageEmbed()
 				.setTitle('Command List')
-				.setColor("#ff3232");
+				.setColor("#BA55D3");
 				let cmdCount = 0;
 			for (const group of this.client.registry.groups.values()) {
 				const owner = this.client.isOwner(msg.author);
