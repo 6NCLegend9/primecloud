@@ -32,7 +32,7 @@ module.exports = class AvatarCommand extends Command {
 				formats.map(fmt => embedURL(fmt.toUpperCase(), user.displayAvatarURL({ format: fmt, size: 2048 }))).join(' | ')
 			)
 			.setImage(user.displayAvatarURL({ format, size: 2048 }))
-			.setColor("#ff3232");
+			.setColor("#BA55D3");
 		return msg.embed(embed);
 	}
 };
