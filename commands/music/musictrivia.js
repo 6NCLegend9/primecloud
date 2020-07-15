@@ -50,7 +50,7 @@ module.exports = class MusicTriviaCommand extends Command {
     ); // get x random urls
     // create and send info embed
     const infoEmbed = new MessageEmbed()
-      .setColor('#ff3232')
+      .setColor('#BA55D3')
       .setTitle('<:CloudMusic:711677713374642287> Starting Music Quiz')
       .setDescription(
         `Get ready! There are ${numberOfSongs} songs, you have 30 seconds to guess either the singer/band or the name of the song. Good luck!
@@ -213,7 +213,7 @@ module.exports = class MusicTriviaCommand extends Command {
             )}: ${classThis.capitalize_Words(queue[0].title)}`;
 
             const embed = new MessageEmbed()
-              .setColor('#ff3232')
+              .setColor('#BA55D3')
               .setTitle(`The song was:  ${song}`)
               .setDescription(
                 classThis.getLeaderBoard(Array.from(sortedScoreMap.entries()))
@@ -245,7 +245,7 @@ module.exports = class MusicTriviaCommand extends Command {
               })
             );
             const embed = new MessageEmbed()
-              .setColor('ff3232')
+              .setColor('BA55D3')
               .setTitle(`<:CloudMusic:711677713374642287> Music Quiz Results:`)
               .setDescription(
                 classThis.getLeaderBoard(Array.from(sortedScoreMap.entries()))
@@ -300,3 +300,4 @@ module.exports = class MusicTriviaCommand extends Command {
     });
   }
 };
+
