@@ -1,4 +1,5 @@
 const { Command } = require('discord.js-commando');
+const { MessageEmbed } = require('discord.js');
 
 module.exports = class LeaveCommand extends Command {
   constructor(client) {
@@ -12,20 +13,15 @@ module.exports = class LeaveCommand extends Command {
   }
 
  
-  run(message) {
-    var voiceChannel = message.member.voice.channel;
-    if (!voiceChannel) return message.reply('Join a channel and try again');
+ run(message) {
+		const connection = this.client.voice.connections.get(message.guild.id);
+		if (!connection) return message.reply('I am not in a voice channel.');
+		connection.channel.leave();
+//	return message.reply(`Left **${connection.channel.name}**...`);
+     const embed = new MessageEmbed()  
+   .setColor('#BA55D3')
+    	.addField('Disconnected', `Left **${connection.channel.name}**...`)
+    	return message.embed(embed);
+	}
 
-    if (
-      typeof message.guild.musicData.songDispatcher == 'undefined' ||
-      message.guild.musicData.songDispatcher == null
-    ) {
-      return message.reply('i`m not on the channel!');
-    }
-    if (!message.guild.musicData.queue)
-      return message.say('There are no songs in queue');
-    message.guild.musicData.songDispatcher.end();
-    message.guild.musicData.queue.length = 0;
-    return;
-  }
 };
