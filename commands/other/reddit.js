@@ -100,7 +100,7 @@ module.exports = class RedditCommand extends Command {
       if (data.title.length > 255) {
         data.title = data.title.substring(0, 252) + '...'; // discord.js does not allow embed title lengths greater than 256
       }
-      if (data.over_18) color = '#000000';
+      if (data.over_18) color = '#A187E0';
       return new MessageEmbed()
         .setColor(color) // if post is nsfw, color is red
         .setTitle(data.title)
