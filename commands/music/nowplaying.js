@@ -32,13 +32,14 @@ module.exports = class NowPlayingCommand extends Command {
 
     const videoEmbed = new MessageEmbed()
       .setThumbnail(video.thumbnail)
-      .setColor('#ff3232')
-    .setURL(video.url)
+      .setColor('#BA55D3')
+      .setURL(video.url)
       .setTitle(video.title)
       .setDescription(description);
     message.channel.send(videoEmbed);
     return;
   }
+ 
   static playbackBar(message, video) {
     const passedTimeInMS = message.guild.musicData.songDispatcher.streamTime;
     const passedTimeInMSObj = {
@@ -56,7 +57,7 @@ module.exports = class NowPlayingCommand extends Command {
     );
 
     let totalDurationInMS = 0;
-    Object.keys(totalDurationObj).forEach(function(key) {
+     Object.keys(totalDurationObj).forEach(function(key) {
       if (key == 'hours') {
         totalDurationInMS = totalDurationInMS + totalDurationObj[key] * 3600000;
       } else if (key == 'minutes') {
@@ -71,13 +72,13 @@ module.exports = class NowPlayingCommand extends Command {
     let playBack = '';
     for (let i = 1; i < 21; i++) {
       if (playBackBarLocation == 0) {
-        playBack = '<:musicrillrunning:715186304819789844>▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬';
+        playBack = '<a:musicrillrunning:715186304819789844>▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬';
         break;
       } else if (playBackBarLocation == 10) {
-        playBack = '▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬<:musicrillrunning:715186304819789844>';
+        playBack = '▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬<a:musicrillrunning:715186304819789844>';
         break;
       } else if (i == playBackBarLocation * 2) {
-        playBack = playBack + '<:musicrillrunning:715186304819789844>';
+        playBack = playBack + '<a:musicrillrunning:715186304819789844>';
       } else {
         playBack = playBack + '▬';
       }
