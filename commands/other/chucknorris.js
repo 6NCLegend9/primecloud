@@ -23,7 +23,7 @@ module.exports = class ChuckNorrisCommand extends Command {
       .then(res => res.json())
       .then(json => {
         const embed = new MessageEmbed()
-          .setColor('#ff3232')
+          .setColor('#BA55D3')
           .setTitle('Chuck Norris Fact')
           .setDescription(json.value)
           .setURL('https://api.chucknorris.io');
