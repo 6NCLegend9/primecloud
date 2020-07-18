@@ -26,9 +26,10 @@ module.exports = class PauseCommand extends Command {
    // message.say('Song paused <:pause:713742415080718337>');
 
     message.guild.musicData.songDispatcher.pause();
-      const embed = new MessageEmbed()
+       const embed = new MessageEmbed()
       .setColor('#BA55D3')
-    	.addField('Pause', `Song paused <:pause:713742415080718337>`)
+    	.addField('Pause', `Song paused :pause_button: `)
+      //.addField('Pause', `Song paused <:pause:713742415080718337>`)
     	return message.embed(embed);
   }
 };
