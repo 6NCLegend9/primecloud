@@ -39,7 +39,8 @@ module.exports = class VolumeCommand extends Command {
     message.guild.musicData.songDispatcher.setVolume(volume);
      const embed = new MessageEmbed()
       .setColor('#BA55D3')
-    	.addField('Volume', `Current volume is: ${wantedVolume}% <:audio:713742239196512358>`)
+    	 .addField('Volume', `Current volume is: ${wantedVolume}% `)
+     	//.addField('Volume', `Current volume is: ${wantedVolume}% <:audio:713742239196512358>`)
     	return message.embed(embed);
   }
 };
