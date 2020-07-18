@@ -27,7 +27,8 @@ module.exports = class ResumeCommand extends Command {
     message.guild.musicData.songDispatcher.resume();
      const embed = new MessageEmbed()
       .setColor('#BA55D3')
-    	.addField('Resume', `Song resumed <:circledplay:713741939433799701>`)
+           	.addField('Resume', `Song resumed :play_pause:`)
+     //.addField('Resume', `Song resumed <:circledplay:713741939433799701>`)
     	return message.embed(embed);
   }
 };
