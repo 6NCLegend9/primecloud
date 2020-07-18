@@ -136,12 +136,12 @@ module.exports = class PlayCommand extends Command {
     vidNameArr.push('exit');
     const embed = new MessageEmbed()
       .setColor('#BA55D3')
-      .setTitle('<:CloudMusicRadio:721477887760531497> Choose a song by commenting a number between 1 and 5')
-      .addField('<:CloudMusicRadio:721477887760531497>  Song 1', vidNameArr[0])
-      .addField('<:CloudMusicRadio:721477887760531497>  Song 2', vidNameArr[1])
-      .addField('<:CloudMusicRadio:721477887760531497>  Song 3', vidNameArr[2])
-      .addField('<:CloudMusicRadio:721477887760531497>  Song 4', vidNameArr[3])
-      .addField('<:CloudMusicRadio:721477887760531497>  Song 5', vidNameArr[4])
+          .setTitle('Choose a song by commenting a number between 1 and 5')
+      .addField('Song 1', vidNameArr[0])
+      .addField('Song 2', vidNameArr[1])
+      .addField('Song 3', vidNameArr[2])
+      .addField('Song 4', vidNameArr[3])
+      .addField('Song 5', vidNameArr[4])
       .addField('Exit', 'exit');
     var songEmbed = await message.channel.send({ embed });
     message.channel
@@ -239,8 +239,10 @@ var discrim = message.author.discriminator;
             .addField('<a:musicrillrunning:715186304819789844>Now Playing:', embedURL(queue[0].title, queue[0].url), true)
             .addField('<a:musicrillrunning:715186304819789844>Duration:', queue[0].duration)
             .addField('Reputed By', message.author.username+ '#' +message.author.discriminator);
-            if (queue[1]) videoEmbed.addField('<:YTMusic:715186433706426448>Up Coming:', embedURL(queue[1].title, queue[1].url), true);
-               if (queue[1]) videoEmbed.addField('<:YTMusic:715186433706426448>Duration:', queue[1].duration);
+                if (queue[1]) videoEmbed.addField('Up Coming:', embedURL(queue[1].title, queue[1].url), true);
+               if (queue[1]) videoEmbed.addField('Duration:', queue[1].duration);
+          //  if (queue[1]) videoEmbed.addField('<:YTMusic:715186433706426448>Up Coming:', embedURL(queue[1].title, queue[1].url), true);
+             //  if (queue[1]) videoEmbed.addField('<:YTMusic:715186433706426448>Duration:', queue[1].duration);
             message.say(videoEmbed);
             message.guild.musicData.nowPlaying = queue[0];
             return queue.shift();
