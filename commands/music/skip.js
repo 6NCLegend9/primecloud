@@ -1,4 +1,5 @@
 const { Command } = require('discord.js-commando');
+const { MessageEmbed } = require('discord.js');
 
 module.exports = class SkipCommand extends Command {
   constructor(client) {
@@ -24,5 +25,9 @@ module.exports = class SkipCommand extends Command {
       return message.reply(`You can't skip a trivia! tyep *endtrivia*`);
     }
     message.guild.musicData.songDispatcher.end();
+      const embed = new MessageEmbed()
+      .setColor('#BA55D3')
+ 	  	.addField('Skip', `<:purple_skip:734454925790019604> Skiped!`)
+    	return message.embed(embed);
   }
 };  
