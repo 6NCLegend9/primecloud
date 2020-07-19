@@ -86,5 +86,4 @@ client.on('ready', () => {
  //   if (!channel) return;
  //   channel.send(`Welcome to **Cloud-Bots.js Support** ${member}!`);
 //  });
-app.listen(4000);
 client.login(token);
