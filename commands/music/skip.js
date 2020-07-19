@@ -27,7 +27,7 @@ module.exports = class SkipCommand extends Command {
     message.guild.musicData.songDispatcher.end();
       const embed = new MessageEmbed()
       .setColor('#BA55D3')
- 	  	.addField('Skip', `<:purple_skip:734454925790019604> Skiped!`)
+ 	  	.addField('Skip', `<:purple_skip:734454925790019604> Skipped!`)
     	return message.embed(embed);
   }
 };  
