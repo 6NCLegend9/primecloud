@@ -5,6 +5,7 @@ module.exports = class SkipToCommand extends Command {
   constructor(client) {
     super(client, {
       name: 'skipto',
+       aliases: [ 'jump'],
       memberName: 'skipto',
       group: 'music',
       description:
@@ -42,7 +43,7 @@ module.exports = class SkipToCommand extends Command {
     return;
           const embed = new MessageEmbed()
       .setColor('#BA55D3')
- 	  	.addField('Skip', `<:purple_skip:734454925790019604> Jumping into song number ${songNumber}!`)
+ 	  	.addField('Jumping', `<:purple_skip:734454925790019604> Jumping into song number ${songNumber}!`)
     	return message.embed(embed);
   }
 };
