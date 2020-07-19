@@ -1,8 +1,10 @@
 
+
 const { CommandoClient } = require('discord.js-commando');
 const { Structures } = require('discord.js');
 const path = require('path');
 const { prefix, token } = require('./config.json');
+const { formatNumber } = require('./util/Util');
 
 Structures.extend('Guild', function(Guild) {
   class MusicGuild extends Guild {
@@ -13,7 +15,7 @@ Structures.extend('Guild', function(Guild) {
         isPlaying: false,
         nowPlaying: null,
         songDispatcher: null,
-        volume: 1
+        volume: 0.80,
       };
       this.triviaData = {
         isTriviaRunning: false,
@@ -25,7 +27,7 @@ Structures.extend('Guild', function(Guild) {
   }
   return MusicGuild;
 });
-
+const Client = require('./structures/Client');
 const client = new CommandoClient({
  commandPrefix: prefix,
  owner: '357510381511639040' // change this to your Discord user ID
@@ -34,7 +36,7 @@ const client = new CommandoClient({
 client.registry
   .registerDefaultTypes()
   .registerGroups([
-       ['music', 'Music commands '],
+    ['music', 'Music commands'],
     ['gifs', 'Gif commands '],
     ['other', 'random types of commands'],
     ['guild', 'guild/moderator related commands'],
@@ -52,34 +54,24 @@ client.registry
   disableMentions: 'everyone',
   })
  .registerCommandsIn(path.join(__dirname, 'commands'));
+ 
+client.on('voiceStateUpdate', async (___, newState) => {
+  if (
+    newState.member.user.bot &&
+    !newState.channelID &&
+    newState.guild.musicData.songDispatcher &&
+    newState.member.user.id == client.user.id
+  ) {
+    newState.guild.musicData.queue.length = 0;
+    newState.guild.musicData.songDispatcher.end();
+  }
+});
 
 client.on('ready', () => {
   console.log('Logged in as: ${client.user.tag}');
   client.user.setActivity(`${prefix}help |  ${formatNumber(client.users.cache.size)} users`, {
     type: 'WATCHING',
-    //url: 'https://github.com/6NCLegend9/primecloud'
+    url: 'https://github.com/6NCLegend9/primecloud'
   });
 });
-
-//const { Client } = require("discord.js")
-//const { VultrexAPI } = require("vultrex.api");
- 
-//client.vultrexApi = new VultrexAPI({
-  //  client: client,
-    //auth: "86fd77a09618d799b9b46292a32822f5b30a69c7b81948b897f9d1627f92c91a28d4154415a3aabe",
-    //logger: true
-//});
- 
-//client.on("ready", () => {
-//    console.log(`Logged in as:	client.logger.info(`[READY] Logged in as ${client.user.tag}! ID: ${client.user.id}`);`);
- //   setInterval(() => {
-  //      client.vultrexApi.post();
- //   }, 6e5);
-//});
-
-  //client.on('guildMemberAdd', member => {
-  //  const channel = member.guild.channels.cache.find(ch => ch.name === 'general'); // change this to the channel name you want to send the greeting to
- //   if (!channel) return;
- //   channel.send(`Welcome to **Cloud-Bots.js Support** ${member}!`);
-//  });
 client.login(token);
