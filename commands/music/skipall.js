@@ -13,7 +13,7 @@ module.exports = class SkipAllCommand extends Command {
 
   run(message) {
     var voiceChannel = message.member.voice.channel;
-    if (!voiceChannel) return message.reply('You cannot use the command unless youre in the same channel as Cloud Music!');
+    if (!voiceChannel) return message.reply('You cannot use the command unless youre in the same channel as Cloud Music Premium!');
 
     if (
       typeof message.guild.musicData.songDispatcher == 'undefined' ||
