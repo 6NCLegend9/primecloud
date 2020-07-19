@@ -10,6 +10,7 @@ module.exports = class AkinatorCommand extends Command {
 			name: 'akinator',
 			aliases: ['aki'],
 			group: 'games',
+			hidden: true,
 			memberName: 'akinator',
 			description: 'Think about a real or fictional character, I will try to guess who it is.',
 			clientPermissions: ['EMBED_LINKS'],
