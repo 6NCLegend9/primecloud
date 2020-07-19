@@ -1,4 +1,4 @@
-onst { Command } = require('discord.js-commando');
+const { Command } = require('discord.js-commando');
 const { MessageEmbed } = require('discord.js');
 const { yandexAPI } = require('../../config.json');
 const ISO6391 = require('iso-639-1');
