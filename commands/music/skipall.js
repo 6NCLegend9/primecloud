@@ -25,7 +25,6 @@ module.exports = class SkipAllCommand extends Command {
       return message.say('There are no songs in queue');
     message.guild.musicData.songDispatcher.end();
     message.guild.musicData.queue.length = 0; // clear queue
-    return;
         const embed = new MessageEmbed()
       .setColor('#BA55D3')
  	  	.addField('Skiping all', `<:purple_skip:734454925790019604> all the song skiped!`)
