@@ -28,7 +28,7 @@ module.exports = class SkipAllCommand extends Command {
     message.guild.musicData.queue.length = 0; // clear queue
         const embed = new MessageEmbed()
       .setColor('#BA55D3')
- 	  	.addField('Skipping all', `<:purple_skip:734454925790019604> all the song skipped!`)
+ 	  	.addField('Skiping all', `<:purple_skip:734454925790019604> all the song skipped!`)
     	return message.embed(embed);
   }
 };
