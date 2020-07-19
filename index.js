@@ -71,13 +71,15 @@ client.vultrexApi = new VultrexAPI({
     logger: true
 });
  
-client.on("ready", () => {
-    console.log(`Logged in as: ${client.user.tag}`);
-    setInterval(() => {
-        client.vultrexApi.post();
-    }, 6e5);
-});
-        
+//client.on("ready", () => {
+//    console.log(`Logged in as:	client.logger.info(`[READY] Logged in as ${client.user.tag}! ID: ${client.user.id}`);`);
+ //   setInterval(() => {
+  //      client.vultrexApi.post();
+ //   }, 6e5);
+//});
+client.on('ready', () => {
+	client.logger.info(`[READY] Logged in as ${client.user.tag}! ID: ${client.user.id}`);
+});        
 
   //client.on('guildMemberAdd', member => {
   //  const channel = member.guild.channels.cache.find(ch => ch.name === 'general'); // change this to the channel name you want to send the greeting to
