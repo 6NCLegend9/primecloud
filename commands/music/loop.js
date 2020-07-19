@@ -37,7 +37,7 @@ module.exports = class LoopCommand extends Command {
     // prettier-ignore
     const embed = new MessageEmbed()  
    .setColor('#BA55D3')
-     	.addField('Disconnected', `:arrows_counterclockwise: ${message.guild.musicData.nowPlaying.title} looped ${numOfTimesToLoop} ${
+     	.addField('Looping', `<:purple_loop:734445630956634213> ${message.guild.musicData.nowPlaying.title} looped ${numOfTimesToLoop} ${
         (numOfTimesToLoop == 1) ? 'time' : 'times'}`)
     //.addField('Disconnected', `<:repeat:713742643489800263> ${message.guild.musicData.nowPlaying.title} looped ${numOfTimesToLoop} ${   (numOfTimesToLoop == 1) ? 'time' : 'times'}`)
     	return message.embed(embed);
