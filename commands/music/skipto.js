@@ -1,4 +1,5 @@
 const { Command } = require('discord.js-commando');
+const { MessageEmbed } = require('discord.js');
 
 module.exports = class SkipToCommand extends Command {
   constructor(client) {
@@ -39,5 +40,9 @@ module.exports = class SkipToCommand extends Command {
     message.guild.musicData.queue.splice(0, songNumber - 1);
     message.guild.musicData.songDispatcher.end();
     return;
+          const embed = new MessageEmbed()
+      .setColor('#BA55D3')
+ 	  	.addField('Skip', `<:purple_skip:734454925790019604> Jumping into song number ${songNumber}!`)
+    	return message.embed(embed);
   }
 };
