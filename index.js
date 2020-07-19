@@ -54,7 +54,7 @@ client.registry
   })
  .registerCommandsIn(path.join(__dirname, 'commands'));
 
-
+const { formatNumber } = require('../../util/Util');
 client.on('ready', () => {
   console.log('Logged in as: ${client.user.tag}');
   client.user.setActivity(`${prefix}help |  ${formatNumber(client.users.cache.size)} users`, {
