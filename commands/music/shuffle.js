@@ -36,7 +36,7 @@ module.exports = class ShuffleQueueCommand extends Command {
     if (titleArray.length < 15) numOfEmbedFields = titleArray.length;
     var queueEmbed = new MessageEmbed()
       .setColor('#BA55D3')
-      .setTitle('<:shuffle:713742466875916339>New Music Queue');
+      .setTitle('<:purple_shuffle:734445507346169907>New Music Queue');
     for (let i = 0; i < numOfEmbedFields; i++) {
       queueEmbed.addField(`${i + 1}:`, `${titleArray[i]}`);
     }
