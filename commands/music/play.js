@@ -74,7 +74,7 @@ module.exports = class PlayCommand extends Command {
         return PlayCommand.playSong(message.guild.musicData.queue, message);
       } else if (message.guild.musicData.isPlaying == true) {
         return message.say(
-          `Playlist - <:CloudMusicRadio:721477887760531497> ${playlist.title} <:CloudMusicRadio:721477887760531497>  has been added to queue`
+          `Playlist - <:purple_queue:734420897682686047> ${playlist.title} <:purple_queue:734420897682686047>  has been added to queue`
         );
       }
     }
