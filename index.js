@@ -1,5 +1,5 @@
 
-
+const { formatNumber, embedURL } = require('../../util/Util');
 const { CommandoClient } = require('discord.js-commando');
 const { Structures } = require('discord.js');
 const path = require('path');
@@ -54,7 +54,6 @@ client.registry
   })
  .registerCommandsIn(path.join(__dirname, 'commands'));
 
-const { formatNumber, embedURL } = require('../../util/Util');
 client.on('ready', () => {
   console.log('Logged in as: ${client.user.tag}');
   client.user.setActivity(`${prefix}help |  ${formatNumber(client.users.cache.size)} users`, {
