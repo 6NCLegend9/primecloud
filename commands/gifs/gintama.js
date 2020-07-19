@@ -27,3 +27,4 @@ module.exports = class GintamaCommand extends Command {
         return;
       });
   }
+};
