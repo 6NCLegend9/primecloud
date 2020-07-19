@@ -26,7 +26,7 @@ module.exports = class QueueCommand extends Command {
     /* eslint-enable */
     var queueEmbed = new MessageEmbed()
       .setColor('#BA55D3')
-    .setTitle('Music Queue')
+    .setTitle('<:purple_queue:734420897682686047>Music Queue')
     //.setTitle('<:CloudMusic:711677713374642287>Music Queue')
     .setFooter('display only first 15 songs and limited to 250 songs')
     for (let i = 0; i < titleArray.length; i++) {
