@@ -59,7 +59,7 @@ client.on('ready', () => {
   console.log('Logged in as: ${client.user.tag}');
   client.user.setActivity(`${prefix}help |  ${formatNumber(client.users.cache.size)} users`, {
     type: 'WATCHING',
-    url: 'https://github.com/galnir/Master-Bot'
+    url: 'https://github.com/6NCLegend9/primecloud'
   });
 });
 
