@@ -14,6 +14,7 @@
     "cheerio": "^1.0.0-rc.3",
     "discord.js": "github:discordjs/discord.js",
     "discord.js-commando": "github:discordjs/Commando",
+    "aki-api": "github:jgoralcz/aki-api",
     "ffmpeg-static": "^2.7.0",
     "iso-639-1": "^2.1.1",
     "node-opus": "^0.3.3",
