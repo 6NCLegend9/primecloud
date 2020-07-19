@@ -1,5 +1,4 @@
 
-const { formatNumber, embedURL } = require('../../util/Util');
 const { CommandoClient } = require('discord.js-commando');
 const { Structures } = require('discord.js');
 const path = require('path');
@@ -62,14 +61,14 @@ client.on('ready', () => {
   });
 });
 
-const { Client } = require("discord.js")
-const { VultrexAPI } = require("vultrex.api");
+//const { Client } = require("discord.js")
+//const { VultrexAPI } = require("vultrex.api");
  
-client.vultrexApi = new VultrexAPI({
-    client: client,
-    auth: "86fd77a09618d799b9b46292a32822f5b30a69c7b81948b897f9d1627f92c91a28d4154415a3aabe",
-    logger: true
-});
+//client.vultrexApi = new VultrexAPI({
+  //  client: client,
+    //auth: "86fd77a09618d799b9b46292a32822f5b30a69c7b81948b897f9d1627f92c91a28d4154415a3aabe",
+    //logger: true
+//});
  
 //client.on("ready", () => {
 //    console.log(`Logged in as:	client.logger.info(`[READY] Logged in as ${client.user.tag}! ID: ${client.user.id}`);`);
