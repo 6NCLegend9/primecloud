@@ -41,5 +41,5 @@ if(!voiceChannel) {
     	.addField('Disconnected', `Left **${connection.channel.name}**...`)
     	return message.embed(embed);
 	}
-
+ }
 };
