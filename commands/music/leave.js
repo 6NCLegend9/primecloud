@@ -14,28 +14,29 @@ module.exports = class LeaveCommand extends Command {
 
  
  run(message) {
-var voiceChannel = message.member.voice.channel;
-if(!voiceChannel) {
-	message.replay('Join a channel and try again');
-	return;
-      }else if (
-	typeof message.guild.musicData.songDispatcher == 'undeifned' ||
-	      message.guild.musicData.songDispatcher == null
-	      ){
-	      message.reply('There is no song playing right now!');
-	      return;
-      }else if (!message.guild.musicData.queue) {
-	      message.reply('There are no song in the queue');
+  var voiceChannel = message.member.voice.channel;
+    if (!voiceChannel) {
+      message.reply('Join a channel and try again');
       return;
-      }else if (message.guildData.songDispatcher.paused) {
-	      message.guildData.songDispatcher.resume();
-	      setTimeout(() => {
-		      message.guildData.songDispatcher.end();
-	      }, 100);
-	      return;
-      } else {
-	      message.guildData.songDispatcher.end();
-	      message.guildData.queue.length = 0;	
+    } else if (
+      typeof message.guild.musicData.songDispatcher == 'undefined' ||
+      message.guild.musicData.songDispatcher == null
+    ) {
+      message.reply('There is no song playing right now!');
+      return;
+    } else if (!message.guild.musicData.queue) {
+      message.reply('There are no songs in queue');
+      return;
+    } else if (message.guild.musicData.songDispatcher.paused) {
+      message.guild.musicData.songDispatcher.resume();
+      setTimeout(() => {
+        message.guild.musicData.songDispatcher.end();
+      }, 100);
+      message.guild.musicData.queue.length = 0;
+      return;
+    } else {
+      message.guild.musicData.songDispatcher.end();
+      message.guild.musicData.queue.length = 0;	
      const embed = new MessageEmbed()  
    .setColor('#BA55D3')
     	.addField('Disconnected', `Left **${connection.channel.name}**...`)
