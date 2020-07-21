@@ -14,6 +14,9 @@ module.exports = class LeaveCommand extends Command {
 
  
  run(message) {
+	 const connection = this.client.voice.connections.get(message.guild.id);
+		if (!connection) return message.reply('I am not in a voice channel.');
+		connection.channel.leave();
   var voiceChannel = message.member.voice.channel;
     if (!voiceChannel) {
       message.reply('Join a channel and try again');
