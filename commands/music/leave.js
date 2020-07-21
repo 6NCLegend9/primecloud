@@ -14,10 +14,28 @@ module.exports = class LeaveCommand extends Command {
 
  
  run(message) {
-		const connection = this.client.voice.connections.get(message.guild.id);
-		if (!connection) return message.reply('I am not in a voice channel.');
-		connection.channel.leave();
-//	return message.reply(`Left **${connection.channel.name}**...`);
+var voiceChannel = message.member.voice.channel;
+if(!voiceChannel) {
+	message.replay('Join a channel and try again');
+	return;
+      }else if (
+	typeof message.guild.musicData.songDispatcher == 'undeifned' ||
+	      message.guild.musicData.songDispatcher == null
+	      ){
+	      message.reply('There is no song playing right now!');
+	      return;
+      }else if (!message.guild.musicData.queue) {
+	      message.reply('There are no song in the queue');
+      return;
+      }else if (message.guildData.songDispatcher.paused) {
+	      message.guildData.songDispatcher.resume();
+	      setTimeout(() => {
+		      message.guildData.songDispatcher.end();
+	      }, 100);
+	      return;
+      } else {
+	      message.guildData.songDispatcher.end();
+	      message.guildData.queue.length = 0;	
      const embed = new MessageEmbed()  
    .setColor('#BA55D3')
     	.addField('Disconnected', `Left **${connection.channel.name}**...`)
