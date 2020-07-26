@@ -70,7 +70,7 @@ module.exports = class NowPlayingCommand extends Command {
       (passedTimeInMS / totalDurationInMS) * 10
     );
     let playBack = '';
-    for (let i = 1; i < 21; i++) {
+    for (let i = 1; i < 36; i++) {
       if (playBackBarLocation == 0) {
         playBack = '<a:musicrillrunning:715186304819789844>▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬';
         break;
