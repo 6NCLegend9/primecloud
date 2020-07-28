@@ -248,7 +248,7 @@ var discrim = message.author.discriminator;
             message.say(videoEmbed);
             message.guild.musicData.nowPlaying = queue[0];
             return queue.shift(videoEmbed);
-            msg.delete()
+            msg.delete(queue[0].duration)
           }) 
           .on('finish', function() {
             if (queue.length >= 1) {
