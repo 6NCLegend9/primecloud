@@ -232,7 +232,6 @@ module.exports = class PlayCommand extends Command {
              var username = message.author.username;
 var discrim = message.author.discriminator;
             const videoEmbed = new MessageEmbed()
-            const msg = message.channel.send("")
             .setThumbnail(queue[0].thumbnail)
               .setColor('#BA55D3') 
             
@@ -247,7 +246,6 @@ var discrim = message.author.discriminator;
             message.say(videoEmbed);
             message.guild.musicData.nowPlaying = queue[0];
             return queue.shift(videoEmbed);
-            msg.delete(queue[0].duration)
           }) 
           .on('finish', function() {
             if (queue.length >= 1) {
