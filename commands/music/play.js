@@ -226,13 +226,13 @@ module.exports = class PlayCommand extends Command {
               highWaterMark: 1024 * 1024 * 10
             })
           )
-          .on('start', function() {
+          .on('start', function() { 
             message.guild.musicData.songDispatcher = dispatcher;
             dispatcher.setVolume(message.guild.musicData.volume);
              var username = message.author.username;
 var discrim = message.author.discriminator;
             const videoEmbed = new MessageEmbed()
-            const msg = message.channel.send("
+            const msg = message.channel.send("")
             .setThumbnail(queue[0].thumbnail)
               .setColor('#BA55D3') 
             
@@ -242,7 +242,6 @@ var discrim = message.author.discriminator;
             .addField('Reputed By', message.author.username+ '#' +message.author.discriminator);
                 if (queue[1]) videoEmbed.addField('<:purple_play:734419394830008372>Up Coming:', embedURL(queue[1].title, queue[1].url), true);
                if (queue[1]) videoEmbed.addField('<:purple_play:734419394830008372>Duration:', queue[1].duration);
-            ")
           //  if (queue[1]) videoEmbed.addField('<:YTMusic:715186433706426448>Up Coming:', embedURL(queue[1].title, queue[1].url), true);
              //  if (queue[1]) videoEmbed.addField('<:YTMusic:715186433706426448>Duration:', queue[1].duration);
             message.say(videoEmbed);
