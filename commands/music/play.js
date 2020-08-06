@@ -230,9 +230,9 @@ async run(message, { query }) {
           .on('start', function() {
             message.guild.musicData.songDispatcher = dispatcher;
             dispatcher.setVolume(message.guild.musicData.volume);
-            const videoEmbed = new MessageEmbed()
-              var username = message.author.username;
+             var username = message.author.username;
 var discrim = message.author.discriminator;
+            const videoEmbed = new MessageEmbed()
               .setThumbnail(queue[0].thumbnail)
               .setColor('#BA55D3')
                   .addField('<a:musicrillrunning:715186304819789844>Now Playing:', embedURL(queue[0].title, queue[0].url), true)
