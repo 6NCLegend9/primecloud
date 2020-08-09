@@ -290,7 +290,7 @@ var discrim = message.author.discriminator;
     const duration = `${durationObj.hours ? (durationObj.hours + ':') : ''}${
       durationObj.minutes ? durationObj.minutes : '00'
     }:${
-      (durationObj.seconds < 10)
+      (durationObj.seconds < 15)
         ? ('0' + durationObj.seconds)
         : (durationObj.seconds
         ? durationObj.seconds
