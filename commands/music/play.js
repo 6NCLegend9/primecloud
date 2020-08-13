@@ -142,7 +142,7 @@ async run(message, { query }) {
     }
     vidNameArr.push('exit');
     const embed = new MessageEmbed()
-      .setColor('#00da3c') 
+      .setColor('#BA55D3') 
       .setTitle('Choose a song by commenting a number between 1 and 5')
       .addField('Song 1', vidNameArr[0])
       .addField('Song 2', vidNameArr[1])
@@ -239,7 +239,7 @@ async run(message, { query }) {
             message.guild.musicData.songDispatcher = dispatcher;
             dispatcher.setVolume(message.guild.musicData.volume);
             const videoEmbed = new MessageEmbed()
-            .setColor('#00da3c')
+            .setColor('#BA55D3')
               .setThumbnail(queue[0].thumbnail)
             .setURL(queue[0].url)
             .addField('<a:musicrillrunning:715186304819789844> Now Playing:', embedURL(queue[0].title, queue[0].url), true)
@@ -249,8 +249,8 @@ async run(message, { query }) {
                 queue[0].memberAvatar
               );
            // .addField('Requested By', message.author.username+ '#' +message.author.discriminator);
-                if (queue[1]) videoEmbed.addField('<:green_play:734419316648312913>Up Coming:', embedURL(queue[1].title, queue[1].url), true);
-               if (queue[1]) videoEmbed.addField('<:green_play:734419316648312913>Duration:', queue[1].duration);
+                if (queue[1]) videoEmbed.addField('<:purple_play:734419394830008372>Up Coming:', embedURL(queue[1].title, queue[1].url), true);
+               if (queue[1]) videoEmbed.addField('<:purple_play:734419394830008372>Duration:', queue[1].duration);
           //  if (queue[1]) videoEmbed.addField(':YTMusic:Up Coming:', embedURL(queue[1].title, queue[1].url), true);
              //  if (queue[1]) videoEmbed.addField(':YTMusic:Duration:', queue[1].duration);
              
