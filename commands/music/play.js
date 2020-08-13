@@ -50,7 +50,7 @@ async run(message, { query }) {
         return message.say('Playlist is either private or it does not exist!');
       });
       // add 10 as an argument in getVideos() if you choose to limit the queue
-      const videosObj = await playlist.getVideos(60).catch(function() {
+      const videosObj = await playlist.getVideos().catch(function() {
         return message.say(
           'There was a problem getting one of the videos in the playlist!'
         );
@@ -62,13 +62,17 @@ async run(message, { query }) {
           try {
             const video = await videosObj[i].fetch();
             // this can be uncommented if you choose to limit the queue
-             if (message.guild.musicData.queue.length < 250) { 
+             if (message.guild.musicData.queue.length < 100) {
             message.guild.musicData.queue.push(
-              PlayCommand.constructSongObj(video, voiceChannel)
+              PlayCommand.constructSongObj(
+                video,
+                voiceChannel,
+                message.member.user
+              )
             );
-             } else {
-              return message.say(`I can't play the full playlist because there will be more than 250 songs in queue`);
-              }
+     } else {
+              return message.say(`I can't play the full playlist because there will be more than 100 songs in queue`);
+            }
           } catch (err) {
             console.error(err);
           }
@@ -79,7 +83,7 @@ async run(message, { query }) {
         return PlayCommand.playSong(message.guild.musicData.queue, message);
       } else if (message.guild.musicData.isPlaying == true) {
         return message.say(
-          `Playlist - <:purple_queue:734420897682686047>  ${playlist.title} <:purple_queue:734420897682686047> has been added to queue`
+          `Playlist - <:purple_queue:734420897682686047>:  ${playlist.title} <:purple_queue:734420897682686047> has been added to queue`
         );
       }
     }
@@ -104,11 +108,11 @@ async run(message, { query }) {
       //   return message.say('I cannot play videos longer than 1 hour');
       // }
       // // can be uncommented if you want to limit the queue
-       if (message.guild.musicData.queue.length > 250) {
-      return message.say('There are too many songs in the queue already, skip or wait a bit');
-       }
+      if (message.guild.musicData.queue.length > 100) {
+      return message.say( 'There are too many songs in the queue already, skip or wait a bit' );
+ }
       message.guild.musicData.queue.push(
-        PlayCommand.constructSongObj(video, voiceChannel)
+        PlayCommand.constructSongObj(video, voiceChannel, message.member.user)
       );
       if (
         message.guild.musicData.isPlaying == false ||
@@ -138,7 +142,7 @@ async run(message, { query }) {
     }
     vidNameArr.push('exit');
     const embed = new MessageEmbed()
-      .setColor('#BA55D3')
+      .setColor('#00da3c') 
       .setTitle('Choose a song by commenting a number between 1 and 5')
       .addField('Song 1', vidNameArr[0])
       .addField('Song 2', vidNameArr[1])
@@ -177,12 +181,16 @@ async run(message, { query }) {
             // }
 
             // // can be uncommented if you don't want to limit the queue
-          if (message.guild.musicData.queue.length > 250) {
-              songEmbed.delete();
-          return message.say('There are too many songs in the queue already, skip or wait a bit');
-        }
+ if (message.guild.musicData.queue.length > 100) {
+  songEmbed.delete();
+  return message.say('There are too many songs in the queue already, skip or wait a bit' );
+      }
             message.guild.musicData.queue.push(
-              PlayCommand.constructSongObj(video, voiceChannel)
+              PlayCommand.constructSongObj(
+                video,
+                voiceChannel,
+                message.member.user
+              )
             );
             if (message.guild.musicData.isPlaying == false) {
               message.guild.musicData.isPlaying = true;
@@ -230,19 +238,29 @@ async run(message, { query }) {
           .on('start', function() {
             message.guild.musicData.songDispatcher = dispatcher;
             dispatcher.setVolume(message.guild.musicData.volume);
-             var username = message.author.username;
-var discrim = message.author.discriminator;
             const videoEmbed = new MessageEmbed()
+            .setColor('#00da3c')
               .setThumbnail(queue[0].thumbnail)
-              .setColor('#BA55D3')
-                  .addField('<a:musicrillrunning:715186304819789844>Now Playing:', embedURL(queue[0].title, queue[0].url), true)
-            .addField('<a:musicrillrunning:715186304819789844>Duration:', queue[0].duration)
-            .addField('Reputed By', message.author.username+ '#' +message.author.discriminator);
-                if (queue[1]) videoEmbed.addField('<:purple_play:734419394830008372>Up Coming:', embedURL(queue[1].title, queue[1].url), true);
-               if (queue[1]) videoEmbed.addField('<:purple_play:734419394830008372>Duration:', queue[1].duration);
-          //  if (queue[1]) videoEmbed.addField('<:YTMusic:715186433706426448>Up Coming:', embedURL(queue[1].title, queue[1].url), true);
-             //  if (queue[1]) videoEmbed.addField('<:YTMusic:715186433706426448>Duration:', queue[1].duration);
-            message.say(videoEmbed);
+            .setURL(queue[0].url)
+            .addField('<a:musicrillrunning:715186304819789844> Now Playing:', embedURL(queue[0].title, queue[0].url), true)
+            .addField('<a:musicrillrunning:715186304819789844> Duration:', queue[0].duration)
+            .setFooter(
+                `Requested by ${queue[0].memberDisplayName}`,
+                queue[0].memberAvatar
+              );
+           // .addField('Requested By', message.author.username+ '#' +message.author.discriminator);
+                if (queue[1]) videoEmbed.addField('<:green_play:734419316648312913>Up Coming:', embedURL(queue[1].title, queue[1].url), true);
+               if (queue[1]) videoEmbed.addField('<:green_play:734419316648312913>Duration:', queue[1].duration);
+          //  if (queue[1]) videoEmbed.addField(':YTMusic:Up Coming:', embedURL(queue[1].title, queue[1].url), true);
+             //  if (queue[1]) videoEmbed.addField(':YTMusic:Duration:', queue[1].duration);
+             
+  //          message.reply(videoEmbed).then(m=>{
+//m.delete(
+//queue[0].duration
+//)
+
+//})
+             message.say(videoEmbed)
             message.guild.musicData.nowPlaying = queue[0];
             return queue.shift();
           })
@@ -273,7 +291,7 @@ var discrim = message.author.discriminator;
         return message.guild.me.voice.channel.leave();
       });
   }
-  static constructSongObj(video, voiceChannel) {
+  static constructSongObj(video, voiceChannel, user) {
     let duration = this.formatDuration(video.duration);
     if (duration == '00:00') duration = 'Live Stream';
     return {
@@ -282,7 +300,9 @@ var discrim = message.author.discriminator;
       rawDuration: video.duration,
       duration,
       thumbnail: video.thumbnails.high.url,
-      voiceChannel
+      voiceChannel,
+      memberDisplayName: user.username,
+      memberAvatar: user.avatarURL('webp', false, 16)
     };
   }
   // prettier-ignore
@@ -290,7 +310,7 @@ var discrim = message.author.discriminator;
     const duration = `${durationObj.hours ? (durationObj.hours + ':') : ''}${
       durationObj.minutes ? durationObj.minutes : '00'
     }:${
-      (durationObj.seconds < 15)
+      (durationObj.seconds < 10)
         ? ('0' + durationObj.seconds)
         : (durationObj.seconds
         ? durationObj.seconds
